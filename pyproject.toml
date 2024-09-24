@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "credit-card-airflow-example"
+version = "0.1.0"
+description = "Airflow project that uses credit card data to demonstrate basic ETL concepts"
+authors = ["Collin"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.10.12"
+apache-airflow = "^2.10.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
