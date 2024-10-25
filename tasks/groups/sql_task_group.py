@@ -2,8 +2,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import sessionmaker
 from models.main import CreditCardTransaction, Base
+from main import init_session
 import pandas as pd
-import asyncio
 # import os
 
 
@@ -14,39 +14,8 @@ import asyncio
 # DB_PORT = os.getenv('SUPBASE_POSTGRES_PORT')
 # DB_DATA_BASE = os.getenv('SUPBASE_POSTGRES_DB')
 
-engine = create_engine("", pool_size=5)
+engine = create_engine("postgresql+psycopg2://postgres.eakheuyhyeksuupimfnt:QNem6t6GRaGTaP8q@aws-0-us-east-1.pooler.supabase.com:5432/postgres", pool_size=5)
 
-# Utility function to init connection to DB
-def init_connection():
-    
-    try:
-        with engine.connect() as connection:
-        # If the connection is successful, no exception will be raised
-            print("Database connection successful.")
-            Base.metadata.create_all(engine)
-    except Exception as e:
-        print(f"An error occured: {str(e)}")
-    
-    
-def init_session():
-    Session = sessionmaker(bind=engine)
-    session = Session()
-    return session
-    
-   
-    
-
-def verify_sql_connection_and_schema() -> bool:
-    """
-    Verify that database and tables exist 
-    """
-    try:
-        init_connection()
-        return True
-    except Exception as e:
-        print(f"Connection failed with error: {str(e)}")
-        return False
-        
 
         
 
@@ -99,7 +68,7 @@ def write_base_table(task_instance):
             ]
             session.add_all(credit_transactions)
             session.commit()
-            print("TRANSACTION DATA WRITTEN TO BASE TABLE")
+            print({"MESSAGE":"TRANSACTION DATA WRITTEN TO BASE TABLE"})
             
     except SQLAlchemyError as e:
         session.rollback()
@@ -110,7 +79,7 @@ def write_base_table(task_instance):
     
     finally:
         session.close()
-        print("CLOSED CONNECTION")
+        print({"MESSAGE":"CLOSED CONNECTION"})
     
     
     

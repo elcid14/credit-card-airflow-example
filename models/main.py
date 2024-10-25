@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Column, Integer, String, Float, DateTime, Boolean
+from sqlalchemy import Column, Integer, String, Float, DateTime, Boolean
 from sqlalchemy.ext.declarative import declarative_base
 
 
@@ -34,9 +34,18 @@ class CreditCardTransaction(Base):
     is_fraud = Column(Boolean)
     
     
+class FraudlentTransactions(Base):
+    __tablename__ = 'fradulent_transactions'
+    id = Column(Integer, primary_key = True)
+    transaction_date = Column(DateTime)
+    credit_card_number = Column(String)
+    merchant = Column(String)
+    category = Column(String)
+    transaction_amount = Column(Float)
+    purchaser_first_name = Column(String)
+    purchaser_last_name = Column(String)
+    is_fraud = Column(Boolean)
     
-    
-# class CreditCardTransactionLocation:
-#     id = fields.UUIDField(primary_key=True)
-#     transaction_date = fields.DatetimeField()
-    
+class NumberOfFradulentTransactions(Base):
+    __tablename__ = 'number_fradulent_transactions'
+    number_fradulent_transactions = (Integer)
