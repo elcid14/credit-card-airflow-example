@@ -4,17 +4,7 @@ from sqlalchemy.orm import sessionmaker
 from models.main import CreditCardTransaction, Base
 from main import init_session
 import pandas as pd
-# import os
 
-
-# DB_DRIVE = os.getenv('DB_DRIVE')
-# DB_USER = os.getenv('SUPBASE_POSTGRES_USER')
-# DB_PASS = os.getenv('SUPBASE_POSTGRES_PASS')
-# DB_HOST = os.getenv('SUPBASE_POSTGRES_HOST')
-# DB_PORT = os.getenv('SUPBASE_POSTGRES_PORT')
-# DB_DATA_BASE = os.getenv('SUPBASE_POSTGRES_DB')
-
-engine = create_engine("postgresql+psycopg2://postgres.eakheuyhyeksuupimfnt:QNem6t6GRaGTaP8q@aws-0-us-east-1.pooler.supabase.com:5432/postgres", pool_size=5)
 
 
         
